@@ -1,14 +1,18 @@
 name: CI Pipeline
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - dev
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install dependencies (Backend)
       run: |
@@ -21,3 +25,35 @@ jobs:
       run: |
         cd front-end-nextjs
         npm install
+
+    - name: Build and start containers with Docker Compose
+      run: |
+        docker-compose up --build -d
+
+    - name: Wait for containers to be ready
+      run: |
+        for i in {1..30}; do
+          STATUS=$(docker-compose ps | grep 'Up' | wc -l)
+          if [ "$STATUS" -eq 2 ]; then
+            echo "All services are up!"
+            break
+          fi
+          echo "Waiting for services..."
+          sleep 5
+        done
+    
+    - name: Login to Docker Hub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
+      run: |
+        docker login -u "$DOCKER_USERNAME" -p "$DOCKER_TOKEN"
+    
+    - name: Push images to Docker Hub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      run: |
+        docker tag devops-qr-code-backend:latest "$DOCKER_USERNAME"/devops-qr-code-backend:latest
+        docker tag devops-qr-code-frontend:latest "$DOCKER_USERNAME"/devops-qr-code-frontend:latest
+        docker push "$DOCKER_USERNAME"/devops-qr-code-backend:latest
+        docker push "$DOCKER_USERNAME"/devops-qr-code-frontend:latest
