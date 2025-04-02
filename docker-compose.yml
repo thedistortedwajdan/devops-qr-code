@@ -3,10 +3,12 @@ services:
     build: ./api
     ports:
       - "8000:8000"
+    image: devops-qr-code-backend:latest
 
   frontend:
     build: ./front-end-nextjs
     ports:
       - "3000:3000"
+    image: devops-qr-code-frontend:latest
     depends_on:
       - backend
