@@ -41,7 +41,7 @@ jobs:
 
       - name: Build and start containers with Docker Compose
         run: |
-          docker-compose up --build
+          docker-compose up --build -d
 
   push-docker-images:
     runs-on: ubuntu-latest
