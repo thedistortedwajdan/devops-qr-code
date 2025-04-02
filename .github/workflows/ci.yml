@@ -43,13 +43,13 @@ jobs:
         run: |
           docker-compose up --build -d
 
-  push-docker-images:
-    runs-on: ubuntu-latest
-    needs: build-docker-images  # Ensures deployment happens only if build passes
+  # push-docker-images:
+  #   runs-on: ubuntu-latest
+  #   needs: build-docker-images  # Ensures deployment happens only if build passes
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
       - name: Wait for containers to be ready
         run: |
