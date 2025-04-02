@@ -54,7 +54,7 @@ jobs:
       - name: Wait for containers to be ready
         run: |
           for i in {1..30}; do
-            STATUS=$(docker-compose ps | grep 'Up' | wc -l)
+            STATUS=$(docker ps --filter "status=running" -q | wc -l)
             if [ "$STATUS" -eq 2 ]; then
               echo "All services are up!"
               break
