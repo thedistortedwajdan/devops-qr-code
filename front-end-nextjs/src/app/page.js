@@ -28,10 +28,10 @@ export default function Home() {
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter URL like https://example.com"
+          placeholder="Enter URL like https://www.example.com"
           style={styles.input}
         />
-        <button type="submit" style={styles.button}>Generate A QR Code</button>
+        <button type="submit" style={styles.button}>Generate QR Code</button>
       </form>
       {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" style={styles.qrCode} />}
     </div>
