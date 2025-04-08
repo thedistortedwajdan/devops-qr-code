@@ -12,7 +12,7 @@ export default function Home() {
     try {
       // const response = await axios.post(`http://localhost:8000/generate-qr/?url=${url}`);
       const response = await axios.post(
-        `http://backend:9000/generate-qr/?url=${url}` // backend is the docker container name
+        `http://backend:8000/generate-qr/?url=${url}` // backend is the docker container name
       );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function Home() {
           type="text"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter URL like https://www.google.com"
+          placeholder="Enter URL like https://example.com"
           style={styles.input}
         />
         <button type="submit" style={styles.button}>Generate A QR Code</button>

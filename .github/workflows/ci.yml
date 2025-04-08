@@ -80,6 +80,7 @@ jobs:
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
         ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'EOF'
+          docker system prune -af --volumes
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devops-qr-code-backend:latest
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/devops-qr-code-frontend:latest
           docker stop backend frontend || true
