@@ -10,10 +10,10 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const response = await axios.post(`http://localhost:8000/generate-qr/?url=${url}`);
-      const response = await axios.post(
-        `http://backend:8000/generate-qr/?url=${url}` // backend is the docker container name
-      );
+      const response = await axios.post(`http://localhost:8000/generate-qr/?url=${url}`);
+      // const response = await axios.post(
+      //   `http://backend:8000/generate-qr/?url=${url}` // backend is the docker container name
+      // );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
       console.error('Error generating QR Code:', error.message);
