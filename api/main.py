@@ -9,7 +9,7 @@ from io import BytesIO
 from dotenv import load_dotenv
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI() 
 
 # Allowing CORS for local testing
 origins = [
