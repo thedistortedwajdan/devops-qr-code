@@ -10,7 +10,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:8000/generate-qr/?url=${url}`);
+      const response = await axios.post(`http://qr-backend:8000/generate-qr/?url=${url}`);
       // const response = await axios.post(
       //   `http://backend:8000/generate-qr/?url=${url}` // backend is the docker container name
       // );
