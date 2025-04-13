@@ -4,6 +4,7 @@ import qrcode
 import boto3
 import os
 from io import BytesIO
+from pydantic import BaseModel
 
 # Loading Environment variable (AWS Access Key and Secret Key)
 from dotenv import load_dotenv
@@ -31,8 +32,12 @@ s3 = boto3.client(
 
 bucket_name = os.getenv("AWS_S3_BUCKET_NAME") # Add your bucket name here
 
+class QRRequest(BaseModel):
+    url: str
+
 @app.post("/generate-qr/")
-async def generate_qr(url: str):
+async def generate_qr(request: QRRequest):
+    url = request.url
     # Generate QR Code
     qr = qrcode.QRCode(
         version=1,

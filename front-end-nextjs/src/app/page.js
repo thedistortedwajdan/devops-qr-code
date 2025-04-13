@@ -11,7 +11,8 @@ export default function Home() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8000/generate-qr/?url=${url}`
+        // `http://localhost:8000/generate-qr/?url=${url}`
+        axios.post(`${backendUrl}/generate-qr/`, { url })
       );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
