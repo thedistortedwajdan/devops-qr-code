@@ -12,7 +12,7 @@ export default function Home() {
     try {
       const response = await axios.post(
         // `http://localhost:8000/generate-qr/?url=${url}`
-        axios.post(`${backendUrl}/generate-qr/`, { url })
+        axios.post(`localhost:8000/generate-qr/`, { url })
       );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
