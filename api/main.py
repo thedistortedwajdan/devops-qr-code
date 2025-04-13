@@ -33,6 +33,7 @@ bucket_name = os.getenv("AWS_S3_BUCKET_NAME") # Add your bucket name here
 
 @app.post("/generate-qr/")
 async def generate_qr(url: str):
+    print(f"Received URL: {url}")
     # Generate QR Code
     qr = qrcode.QRCode(
         version=1,
