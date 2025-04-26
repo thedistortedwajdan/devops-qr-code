@@ -91,4 +91,4 @@ jobs:
           docker run -d --name backend --network qr-network -e AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} -e AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }} -p 8000:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/devops-qr-code-backend:latest
           docker run -d --name frontend --network qr-network -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/devops-qr-code-frontend:latest
         EOF
-        rm -f private_key.pem
+        rm -f private_key.pem 
