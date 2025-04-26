@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Fayez</h1>
+      <h1 style={styles.title}>QR Code Generator</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
