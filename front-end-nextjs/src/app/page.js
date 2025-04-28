@@ -15,7 +15,7 @@ export default function Home() {
       );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
-      console.error("Error generating QR Code:", error.message);
+      console.error("😈💦🍑🍆", error.message);
     }
   };
 
