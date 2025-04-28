@@ -15,13 +15,13 @@ export default function Home() {
       );
       setQrCodeUrl(response.data.qr_code_url);
     } catch (error) {
-      console.error("😈💦🍑🍆", error.message);
+      console.error("Error generating QR Code:", error.message);
     }
   };
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>QR Code Generator</h1>
+      <h1 style={styles.title}>😈💦🍑🍆</h1>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
